@@ -288,39 +288,38 @@
       disableOnInteraction: false,
     },
   });
+</script>
+<script>
+  // Toggle Hamburger Menu
+  document.getElementById('hamburgerBtn').addEventListener('click', function () {
+    const mobileNav = document.getElementById('mobileNav');
+    mobileNav.classList.toggle('hidden');
+  });
 
-   // Dark Mode
-    const toggleBtn = document.getElementById('dark-toggle');
-    const icon = document.getElementById('dark-icon');
-    const html = document.documentElement;
+  // Dark Mode
+  const toggleBtn = document.getElementById('dark-toggle');
+  const icon = document.getElementById('dark-icon');
+  const html = document.documentElement;
 
-    if (localStorage.getItem('theme') === 'dark' ||
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      html.classList.add('dark');
+  if (localStorage.getItem('theme') === 'dark' ||
+      (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    html.classList.add('dark');
+    icon.textContent = '🌞';
+  } else {
+    html.classList.remove('dark');
+    icon.textContent = '🌙';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    html.classList.toggle('dark');
+    if (html.classList.contains('dark')) {
+      localStorage.setItem('theme', 'dark');
       icon.textContent = '🌞';
     } else {
-      html.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
       icon.textContent = '🌙';
     }
-
-    toggleBtn.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      if (html.classList.contains('dark')) {
-        localStorage.setItem('theme', 'dark');
-        icon.textContent = '🌞';
-      } else {
-        localStorage.setItem('theme', 'light');
-        icon.textContent = '🌙';
-      }
-    });
-
-    // Hamburger Menu
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+  });
 </script>
 </body>
 
